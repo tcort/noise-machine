@@ -19,12 +19,16 @@ function init() {
 
     // pseudo brown/pink noise filter
     const filter = ctx.createBiquadFilter();
-    filter.frequency.value = 256;
-    filter.Q.value = 0.64;
+    filter.frequency.value = 420;
+    filter.Q.value = 0.69;
     filter.type = 'lowpass';
 
+    const amp = ctx.createGain();
+    amp.gain.value = 2;
+
     src.connect(filter);
-    filter.connect(ctx.destination);
+    filter.connect(amp);
+    amp.connect(ctx.destination);
 
 }
 
